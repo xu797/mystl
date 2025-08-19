@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/list_iterator.h
+list_node.h
+../include/list_node.h
+
+../include/list_node.h
+
+../include/myallocator.h
+
+../include/mylist.h
+myallocator.h
+../include/myallocator.h
+list_node.h
+../include/list_node.h
+list_iterator.h
+../include/list_iterator.h
+
+/home/xu/github/mystl/list/src/main.cpp
+iostream
+-
+mylist.h
+/home/xu/github/mystl/list/src/mylist.h
+

@@ -1,0 +1,3 @@
+/home/xu/github/mystl/list/build/CMakeFiles/rebuild_cache.dir
+/home/xu/github/mystl/list/build/CMakeFiles/edit_cache.dir
+/home/xu/github/mystl/list/build/CMakeFiles/main.dir
