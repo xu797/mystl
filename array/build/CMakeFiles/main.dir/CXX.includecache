@@ -9,6 +9,10 @@
 ../include/myarray.h
 iostream
 -
+myarray_iterator.h
+../include/myarray_iterator.h
+
+../include/myarray_iterator.h
 
 /home/xu/github/mystl/array/src/main.cpp
 myarray.h

@@ -10,4 +10,9 @@ int main()
     a.show();
     std::cout << a.back() << std::endl;
     std::cout << a.front() << std::endl;
+    for(auto it = a.begin(); it != a.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }

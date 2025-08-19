@@ -1,6 +1,7 @@
 #ifndef MYARRAY_H
 #define MYARRAY_H
 #include<iostream>
+#include"myarray_iterator.h"
 namespace mystl
 {
 template<typename _T, size_t _N>
@@ -14,6 +15,8 @@ public:
     typedef const _T* const_pointer;
     typedef size_t size_type;
     typedef int difference_type;
+
+    typedef ArrayIterator<_T> iterator;
 
     Array(){
         for(int i = 0; i < _N; ++i){
@@ -94,6 +97,15 @@ public:
         }
         return m_data[index];
     }
+
+    iterator begin(){
+        return iterator(m_data);
+    }
+
+    iterator end(){
+        return iterator(m_data + _N);
+    }
+    
     void show() const{
         std::cout << size() << std::endl;
         for(int i = 0; i < _N; i++){
