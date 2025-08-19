@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/myarray.h
+iostream
+-
+
+/home/xu/github/mystl/array/src/main.cpp
+myarray.h
+/home/xu/github/mystl/array/src/myarray.h
+

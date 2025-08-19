@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/myvector.h
+iostream
+-
+
+/home/xu/github/mystl/vector/src/main.cpp
+myvector.h
+/home/xu/github/mystl/vector/src/myvector.h
+
