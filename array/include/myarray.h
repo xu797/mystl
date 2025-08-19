@@ -2,6 +2,9 @@
 #define MYARRAY_H
 #include<iostream>
 #include"myarray_iterator.h"
+#include"myarray_const_iterator.h"
+#include"myarray_reverse_iterator.h"
+#include"myarray_const_reverse_iterator.h"
 namespace mystl
 {
 template<typename _T, size_t _N>
@@ -17,6 +20,9 @@ public:
     typedef int difference_type;
 
     typedef ArrayIterator<_T> iterator;
+    typedef ArrayConstIterator<_T> const_iterator;
+    typedef ArrayReverseIterator<_T> reverse_iterator;
+    typedef ArrayConstReverseIterator<_T> const_reverse_iterator;
 
     Array(){
         for(int i = 0; i < _N; ++i){
@@ -106,12 +112,28 @@ public:
         return iterator(m_data + _N);
     }
     
-    void show() const{
-        std::cout << size() << std::endl;
-        for(int i = 0; i < _N; i++){
-            std::cout << m_data[i] << " ";
-        }
-        std::cout << std::endl;
+    reverse_iterator rbegin(){
+        return reverse_iterator(m_data + _N - 1);
+    }
+
+    reverse_iterator rend(){
+        return reverse_iterator(m_data - 1);
+    }
+
+    const_iterator cbegin(){
+        return const_iterator(m_data);
+    }
+
+    const_iterator cend(){
+        return const_iterator(m_data + _N);
+    }
+
+    const_reverse_iterator crbegin(){
+        return const_reverse_iterator(m_data + _N - 1);
+    }
+
+    const_reverse_iterator crend(){
+        return const_reverse_iterator(m_data - 1);
     }
 private:
     _T m_data[_N];
