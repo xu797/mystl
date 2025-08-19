@@ -9,6 +9,22 @@
 ../include/myarray.h
 iostream
 -
+myarray_iterator.h
+../include/myarray_iterator.h
+myarray_const_iterator.h
+../include/myarray_const_iterator.h
+myarray_reverse_iterator.h
+../include/myarray_reverse_iterator.h
+myarray_const_reverse_iterator.h
+../include/myarray_const_reverse_iterator.h
+
+../include/myarray_const_iterator.h
+
+../include/myarray_const_reverse_iterator.h
+
+../include/myarray_iterator.h
+
+../include/myarray_reverse_iterator.h
 
 /home/xu/github/mystl/array/src/main.cpp
 myarray.h
