@@ -97,9 +97,20 @@ public:
         _NodePtr _Node;
     };
     //--------------------construct/destruct---------------------
-    explicit MyList() : _Head(_BuyNode()), _Size(0) {}
-
-
+    explicit MyList() : _Head(_BuyNode()), _Size(0) 
+    {}
+    explicit MyList(size_type _N, const_reference _Val) : _Head(_BuyNode()), _Size(0)
+    {
+        insert(end(), _N, _Val);
+    }
+    // MyList(const_pointer _F, const_pointer _L) : _Head(_BuyNode()), _Size(0)
+    // {
+    //     insert(end(), _F, _L);
+    // }
+    // MyList(_It _F, _It _L) : _Head(_BuyNode()), _Size(0)
+    // {
+    //     insert(end(), _F, _L);
+    // }
     //-------------------begin()/end()----------------------
     Iterator begin()
     {
@@ -120,21 +131,20 @@ public:
         _Size++;
         return Iterator(_S);
     }
-    Iterator insert(Iterator _P, size_type _N ,const_reference _V = _Ty())
+    void insert(Iterator _P, size_type _N ,const_reference _V = _Ty())
     {
         for(int i = 0; i < _N; ++i)
         {
             insert(_P, _V);
         }
     }
-    Iterator insert(Iterator _P, Iterator _F, Iterator _L)
+    void insert(Iterator _P, Iterator _F, Iterator _L)
     {
         while (_F != _L)
         {
             insert(_P, *_F);
             ++_F;
-        }
-        
+        } 
     }
     //------------------------erase------------------------
     Iterator erase(Iterator _P)
@@ -154,6 +164,40 @@ public:
             erase(_F++);
         }
         return _F;
+    }
+    size_type size() const
+    {
+        return _Size;
+    }
+    bool empty() const
+    {
+        return size() == 0;
+    }
+    void push_back(const_reference _V)
+    {
+        insert(end(), _V);
+    }
+    void push_front(const_reference _V)
+    {
+        insert(begin(), _V);
+    }
+    void pop_back()
+    {
+        erase(--end());
+    }
+    void pop_front()
+    {
+        erase(begin());
+    }
+    void clear()
+    {
+        erase(begin(), end());
+    }
+    reference front(){
+        return *(begin());
+    }
+    reference back(){
+        return *(--end());
     }
 private:
     _NodePtr _BuyNode(_NodePtr _Narg = nullptr, _NodePtr _Parg = nullptr)

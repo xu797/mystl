@@ -1,32 +1,38 @@
-#include"mylist.h"
+#include "mylist.h"
 int main()
 {
-    mystl::MyList<int> list;
-    for(int i = 0; i < 5; ++i)
-    {
-        list.insert(list.begin(), i);
+    mystl::MyList<int> myList;
+    for(int i = 0; i < 5; ++i){
+        myList.insert(myList.end(), i + 1);
     }
-    for(int i = 0; i < 5; ++i)
+
+    mystl::MyList<int>::Iterator it = myList.begin();
+    while (it != myList.end())
     {
-        list.insert(list.end(), i);
-    }
-    for(auto it = list.begin(); it != list.end(); ++it)
-    {
+        /* code */
         std::cout << *it << " ";
+        ++it;
     }
     std::cout << std::endl;
-    list.erase(list.begin());   
-    list.erase(--list.end());
-    for(auto it = list.begin(); it != list.end(); ++it)
+    
+    myList.insert(myList.end(), 10, 2);
+    it = myList.begin();
+    while (it != myList.end())
     {
         std::cout << *it << " ";
+        it++;
     }
     std::cout << std::endl;
-    list.erase(list.begin(), list.end());
-    for(auto it = list.begin(); it != list.end(); ++it)
+    std::cout << myList.front() << " " << myList.back() << std::endl;
+    myList.clear();
+    it = myList.begin();
+    while (it != myList.end())
     {
+        /* code */
         std::cout << *it << " ";
+        it++;
     }
     std::cout << std::endl;
+    
     return 0;
 }
