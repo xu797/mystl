@@ -4,14 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/xu/github/mystl/vector/src/main.cpp" "/home/xu/github/mystl/vector/build/CMakeFiles/main.dir/src/main.cpp.o"
+  "/home/xu/github/mystl/list/src/main.cpp" "/home/xu/github/mystl/list/build/CMakeFiles/main.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
-  "../../list/include"
   )
 
 # Targets to which this target links.

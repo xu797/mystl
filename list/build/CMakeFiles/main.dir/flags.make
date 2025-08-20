@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/xu/github/mystl/vector/include -I/home/xu/github/mystl/vector/../list/include 
+CXX_INCLUDES = -I/home/xu/github/mystl/list/include 
 
