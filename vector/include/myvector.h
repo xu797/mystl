@@ -1,52 +1,64 @@
 #ifndef MYVECTOR_H
 #define MYVECTOR_H
 #include<iostream>
-namespace my
+#include"myallocate.h"
+namespace mystl
 {
-template<typename _Ty>
-class myVector
+template<typename _Ty, typename _A = MyAllocate<_Ty>>
+class MyVector
 {
 public:
     typedef _Ty* pointer;
-    myVector(int size = 10) 
+    MyVector(int size = 10) 
     {
         std::cout << "constructor of MyVector" << std::endl;
-        first_ = new _Ty[size];
+        first_ = alloc_.allocate(size);
+        // first_ = new _Ty[size];
         last_ = first_;
         end_ = first_ + size;
     } 
-    myVector(const myVector<_Ty>& vec)
+    MyVector(const MyVector<_Ty>& vec)
     {
         int size = vec.capacity();
         int num = vec.size();
-        this->first_ = new _Ty[size];
+        this->first_ = alloc_.allocate(size);
         this->last_ = this->first_ + num;
         this->end_ = this->first_ + size;
         for(int i = 0; i < num; ++i){
-            this->first_[i] = vec.first_[i];
+            // this->first_[i] = vec.first_[i];
+            alloc_.construct(first_ + i, vec.first_[i]);
         }
     }
-    myVector<_Ty>& operator=(const myVector<_Ty>& vec)
+    MyVector<_Ty>& operator=(const MyVector<_Ty>& vec)
     {
         if(&vec == this)
         {
             return *this;
         }
-        delete []first_;
+        for(int i = 0; i < size(); ++i){
+            alloc_.destroy(first_ + i);
+        }
+        alloc_.deallocate(first_);
         int size = vec.capacity();
         int num = vec.size();
-        this->first_ = new _Ty[size];
+        this->first_ = alloc_.allocate(size);
         this->last_ = this->first_ + num;
         this->end_ = this->first_ + size;
         for(int i = 0; i < num; ++i){
-            this->first_[i] = vec.first_[i];
+            alloc_.construct(first_ + i, vec.first_[i]);
         }
         return *this;
     }
-    ~myVector()
+    ~MyVector()
     {   
         std::cout << "destructor of MyVector" << std::endl;
-        delete []first_;
+        // delete []first_;
+        int num = size();
+        for(int i = 0; i < num; i++)
+        {
+            alloc_.destroy(first_ + i);
+        }
+        alloc_.deallocate(first_);
         first_ = nullptr;
         last_ = nullptr;
         end_ = nullptr;
@@ -56,7 +68,8 @@ public:
         if(full()){
             expand();
         }
-        *last_ = _T;
+        // *last_ = _T;
+        alloc_.construct(last_, _T);
         last_++;
     }
     void pop_back()
@@ -66,23 +79,24 @@ public:
             return;
         }
         last_--;
+        alloc_.destroy(last_);
     }
-    int size()const
+    int size() const
     {
         return last_ - first_;
     }
-    _Ty back()const
+    int capacity() const
+    {
+        return end_ - first_;
+    }
+    _Ty back() const
     {
         if(empty())
         {
             throw "vector is empty!";
         }
         return *(last_ - 1);
-    }
-    int capacity()const
-    {
-        return end_ - first_;
-    }  
+    } 
 private:
     bool empty()const
     {
@@ -95,11 +109,15 @@ private:
     void expand()
     {
         int len = capacity();
-        pointer tmp = new _Ty[2 * len];
+        // pointer tmp = new _Ty[2 * len];
+        pointer tmp = alloc_.allocate(2 * len);
         for(int i = 0; i < len; i++){
-            tmp[i] = first_[i];
+            // tmp[i] = first_[i];
+            alloc_.construct(tmp + i, first_[i]);
+            alloc_.destroy(first_ + i);
         }
-        delete []first_;
+        // delete []first_;
+        alloc_.deallocate(first_);
         first_ = tmp;
         last_ = first_ + len;
         end_ = first_ + len * 2;
@@ -108,6 +126,7 @@ private:
     pointer first_;
     pointer last_;
     pointer end_;
+    _A alloc_;
 };
 }
 #endif

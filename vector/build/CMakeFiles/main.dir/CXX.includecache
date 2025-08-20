@@ -6,9 +6,15 @@
 
 #IncludeRegexTransform: 
 
+../../list/include/myallocate.h
+iostream
+-
+
 ../include/myvector.h
 iostream
 -
+myallocate.h
+../include/myallocate.h
 
 /home/xu/github/mystl/vector/src/main.cpp
 myvector.h

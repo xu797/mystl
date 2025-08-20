@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin/)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-# file(GLOB MAIN_SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
+include_directories(${PROJECT_SOURCE_DIR}/../list/include)
+file(GLOB MAIN_SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-add_executable(test01 test01.cpp)
-add_executable(test02 test02.cpp)
+add_executable(main ${MAIN_SRC})
